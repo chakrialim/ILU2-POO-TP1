@@ -144,7 +144,7 @@ public class Village {
 		texte.append(vendeur.getNom() + " cherche un endroit pour vendre " + nbProduit + " " + produit + ".\n");
 		int numeroEtalLibre = marche.trouverEtalLibre();
 		if (numeroEtalLibre != -1) {
-			marche.etals[numeroEtalLibre].occuperEtal(vendeur, produit, nbProduit);
+			marche.utiliserEtal(numeroEtalLibre, vendeur, produit, nbProduit);
 			texte.append("Le vendeur " + vendeur.getNom() + " vend des " + produit + " a l'etal n�"
 					+ (numeroEtalLibre + 1) + ".\n");
 		} else {
@@ -176,7 +176,11 @@ public class Village {
 
 	public String partirVendeur(Gaulois vendeur) {
 		Etal etal = marche.trouverVendeur(vendeur);
-		return etal.libererEtal();
+		StringBuilder texte = new StringBuilder();
+		if (etal!=null) {
+			texte.append(etal.libererEtal());
+		}
+		return texte.toString();
 
 	}
 
@@ -188,8 +192,7 @@ public class Village {
 	}
 
 	public Etal rechercherEtal(Gaulois vendeur) {
-		Etal etal = marche.trouverVendeur(vendeur);
-		return etal;
+		return marche.trouverVendeur(vendeur);
 	}
 
 }
