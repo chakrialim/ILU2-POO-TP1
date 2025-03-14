@@ -50,17 +50,13 @@ public class Etal {
 		return "L'etal est libre";
 	}
 
-	private void leverExceptionAcheterProduit(int quantiteAcheter) {
+	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) {
 		if (quantiteAcheter < 1) {
 			throw new IllegalArgumentException("La quantite " + quantiteAcheter + " doit etre positive");
 		}
 		if (!etalOccupe) {
 			throw new IllegalStateException("L'etal doit etre occupe");
 		}
-	}
-
-	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) {
-		leverExceptionAcheterProduit(quantiteAcheter);
 		StringBuilder chaine = new StringBuilder();
 		try {
 			chaine.append(
